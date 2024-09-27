@@ -1,38 +1,57 @@
 package parrot;
 
+import static parrot.ParrotTypeEnum.*;
+
 public class Parrot {
 
-    private ParrotTypeEnum type;
-    private int numberOfCoconuts;
-    private double voltage;
-    private boolean isNailed;
 
-    public Parrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, boolean isNailed) {
-        this.type = type;
-        this.numberOfCoconuts = numberOfCoconuts;
-        this.voltage = voltage;
-        this.isNailed = isNailed;
-    }
 
-    public double getSpeed() {
+
+   protected Parrot() {
+   }
+
+    public  double getSpeed()
         return switch (type) {
             case EUROPEAN -> getBaseSpeed();
             case AFRICAN -> Math.max(0, getBaseSpeed() - getLoadFactor() * numberOfCoconuts);
             case NORWEGIAN_BLUE -> (isNailed) ? 0 : getBaseSpeed(voltage);
             default -> throw new RuntimeException("Should be unreachable");
         };
-    }
+   */
 
-    private double getBaseSpeed(double voltage) {
+
+
+
+    protected double getBaseSpeed(double voltage) {
         return Math.min(24.0, voltage * getBaseSpeed());
     }
 
-    private double getLoadFactor() {
+    protected double getLoadFactor() {
         return 9.0;
     }
 
-    private double getBaseSpeed() {
+    protected double getBaseSpeed() {
         return 12.0;
     }
+
+
+
+
+
+    /*public abstract String getParrotHome(); /*{
+
+        if (type == EUROPEAN){
+            return "Europeiska papegojor bor i ett bo byggt av pinnar.";
+        }
+
+        if (type == AFRICAN){
+            return "Afrikanska papegojor bor i hål i träd.";
+        }
+
+        if (type == NORWEGIAN_BLUE){
+            return "Norwegian blue bor i en bur, om den är fastspikad.";
+        }
+        return "";
+    }*/
 
 }
